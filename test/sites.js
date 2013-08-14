@@ -382,10 +382,80 @@ describe('NoPicAds', function () {
     });
   });
 
-  it('gallery.jpavgod.com', function (done) {
-    browse('http://gallery.jpavgod.com/viewer.php?file=10313279045761679674.jpg', function (browser, to) {
-      assert.strictEqual(to, 'http://gallery.jpavgod.com/images/10313279045761679674.jpg');
-    }, done);
+  describe('mihalism', function () {
+    it('gallery.jpavgod.com', function (done) {
+      browse('http://gallery.jpavgod.com/viewer.php?file=10313279045761679674.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://gallery.jpavgod.com/images/10313279045761679674.jpg');
+      }, done);
+    });
+
+    it('gzvd.info', function (done) {
+      browse('http://gzvd.info/viewer.php?file=69796079281210754836.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://gzvd.info/images/69796079281210754836.jpg');
+      }, done);
+    });
+
+    it('hentai-hosting.com', function (done) {
+      browse('http://hentai-hosting.com/viewer.php?file=41319915396861835025.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://hentai-hosting.com/images/41319915396861835025.jpg');
+      }, done);
+    });
+
+    it('howtohemorrhoidscure.com', function (done) {
+      browse('http://howtohemorrhoidscure.com/viewer.php?file=87282378723964305235.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://howtohemorrhoidscure.com/images/87282378723964305235.jpg');
+      }, done);
+    });
+
+    it('imagepremium.com', function (done) {
+      browse('http://imagepremium.com/viewer.php?file=epj4tnel5e195u9g5n.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://imagepremium.com/images/epj4tnel5e195u9g5n.jpg');
+      }, done);
+    });
+
+    it('pornpicuploader.com', function (done) {
+      browse('http://pornpicuploader.com/viewer.php?file=gmb00jge22lqusbiwhr.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://gzvd.info/images/69796079281210754836.jpg');
+      }, done);
+    });
+
+    it('shareimage.ro', function (done) {
+      browse('http://shareimage.ro/viewer.php?file=nk8u6n1jn7um6k18krft.jpg', function (browser, to) {
+        assert.strictEqual(to, 'http://shareimage.ro/images/nk8u6n1jn7um6k18krft.jpg');
+      }, done);
+    });
+  });
+
+  describe('reklama', function () {
+    it('croftimage.com', function (done) {
+      browse('http://croftimage.com/img-52097c35ccef4.html', function (browser, to) {
+        assert.strictEqual(to, 'http://croftimage.com/upload/big/2013/08/13/52097c35cceb4.jpg');
+      }, done);
+    });
+
+    it('imagedecode.com', function (done) {
+      browse('http://imagedecode.com/img-52097cf165da1.html', function (browser, to) {
+        assert.strictEqual(to, 'http://imagedecode.com/upload/big/2013/08/13/52097cf165d64.jpg');
+      }, done);
+    });
+
+    it('imgserve.net', function (done) {
+      browse('http://imgserve.net/img-52097d330e05a.html', function (browser, to) {
+        assert.strictEqual(to, 'http://s4.imgserve.net/images/big/2013/08/13/52097d330e012.jpg');
+      }, done);
+    });
+
+    it('zeljeimage.com', function (done) {
+      browse('http://zeljeimage.com/img-52097d593d017.html', function (browser, to) {
+        assert.strictEqual(to, 'http://zeljeimage.com/upload/big/2013/08/13/52097d593cfdc.jpg');
+      }, done);
+    });
+
+    it('zonezeedimage.com', function (done) {
+      browse('http://zonezeedimage.com/img-52097d5eefdb3.html', function (browser, to) {
+        assert.strictEqual(to, 'http://zonezeedimage.com/upload/big/2013/08/13/52097d5eefd77.jpg');
+      }, done);
+    });
   });
 });
 
