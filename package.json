@@ -1,0 +1,14 @@
+{
+  "name": "nopicads",
+  "version": "2.24.1",
+  "devDependencies": {
+    "grunt": "",
+    "grunt-cli": "",
+    "zombie": "",
+    "mocha": "",
+    "grunt-mocha-test": ""
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
