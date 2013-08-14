@@ -638,12 +638,17 @@ function wrap (window, unsafeWindow, go) {
           unsafeWindow.document.body.onbeforeunload = null;
         }
 
+        var matches = window.location.pathname.match(/^\/verify/);
+        if (matches) {
+          window.location.reload();
+        }
+
         if (unsafeWindow && unsafeWindow.Lbjs && unsafeWindow.Lbjs.TargetUrl) {
           go(unsafeWindow.Lbjs.TargetUrl);
           return;
         }
 
-        var matches = window.document.body.innerHTML.match(/TargetUrl\s*=\s*['"]([^'"]+)['"]/);
+        matches = window.document.body.innerHTML.match(/TargetUrl\s*=\s*['"]([^'"]+)['"]/);
         if (matches) {
           go(matches[1]);
         }
