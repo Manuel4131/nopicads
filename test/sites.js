@@ -20,6 +20,7 @@ function browse (url, check, done) {
   var p = browser.visit(url);
   var tmp = NoPicAds(browser.window, browser.window);
   var lastError = null;
+  var retry = false;
 
   function tryAndCatch (to) {
     try {
@@ -28,29 +29,42 @@ function browse (url, check, done) {
       lastError = e;
     }
   }
+  function report () {
+    if (lastError) {
+      done(lastError);
+    } else if (retry) {
+      setTimeout(function () {
+        p = browser.visit(url);
+        retry = false;
+        p.then(checkRedirect, checkRedirect).done(report, report);
+      }, 5000);
+    } else {
+      done();
+    }
+  }
   function checkRedirect () {
     if (chain.length <= 1) {
       return;
     }
-    tryAndCatch(chain[chain.length-1]);
-  }
-  function report () {
-    if (lastError) {
-      done(lastError);
-    } else {
-      done();
+
+    if (chain[chain.length-1] === url) {
+      retry = true;
+      return;
     }
+
+    tryAndCatch(chain[chain.length-1]);
   }
 
   tmp(function (to) {
     tryAndCatch(to);
   });
+
   p.then(checkRedirect, checkRedirect).done(report, report);
 }
 
 
 describe('NoPicAds', function () {
-  this.timeout(10 * 1000);
+  this.timeout(60 * 1000);
 
   describe('adfly', function () {
     it('adf.ly', function (done) {
