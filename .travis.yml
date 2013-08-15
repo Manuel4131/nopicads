@@ -1,0 +1,9 @@
+language: node_js
+before_install:
+  - git clone git://github.com/n1k0/casperjs.git ~/casperjs
+  - cd ~/casperjs
+  - git checkout 1.1-beta1
+  - cd -
+  - export PATH="$HOME/casperjs/bin:$PATH"
+script:
+  - casperjs test --includes=test.js --cookies-file=/dev/null ./test/
