@@ -54,6 +54,26 @@ casper.options.onPageInitialized = function () {
   if (matcher.match(this.getCurrentUrl())) {
     this.evaluate(function () {
       this.unsafeWindow = window;
+      this.GM_xmlhttpRequest = function (options) {
+        var xhr = new XMLHttpRequest();
+
+        if (options.method === 'GET') {
+          options.url += '?' + options.data;
+        }
+
+        xhr.open(options.method, options.url, true);
+        xhr.onload = options.onload;
+        Object.keys(options.headers).forEach(function (k) {
+          xhr.setRequestHeader(k, options.headers[k]);
+        });
+
+        if (options.method === 'GET') {
+          xhr.send();
+        } else {
+          xhr.send(options.data);
+        }
+        return xhr;
+      };
     });
     var s = this.page.injectJs('NoPicAds.user.js');
   }
