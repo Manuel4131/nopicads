@@ -685,6 +685,17 @@
             unsafeWindow.document.body.onbeforeunload = null;
           }
 
+          var i = $_('#c_linkverify_captcha_CaptchaImage');
+          if (i) {
+            NoPicAds.captcha(i.src, function (c) {
+              var a = $('#txtCode');
+              var b = $('#submit');
+              a.value = c;
+              b.click();
+            });
+            return;
+          }
+
           if (unsafeWindow && unsafeWindow.Lbjs && unsafeWindow.Lbjs.TargetUrl) {
             NoPicAds.redirect(unsafeWindow.Lbjs.TargetUrl);
             return;
