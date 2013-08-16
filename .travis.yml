@@ -6,4 +6,4 @@ before_install:
   - cd -
   - export PATH="$HOME/casperjs/bin:$PATH"
 script:
-  - casperjs test --includes=test.js --cookies-file=/dev/null ./test/
+  - casperjs test --includes=test.js --cookies-file=/dev/null --web-security=no ./test/
