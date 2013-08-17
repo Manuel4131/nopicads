@@ -639,7 +639,7 @@
       });
     },
 
-    captcha: function (imgSrc, cb) {
+    captcha: function (imgSrc, variant, cb) {
       var a = document.createElement('canvas');
       var b = a.getContext('2d');
       var c = new Image();
@@ -652,6 +652,7 @@
         var e = d.substr(d.indexOf(',') + 1);
         $post('http://www.wcpan.info/cgi-bin/captcha.cgi', {
           i: e,
+          v: variant,
         }, cb);
       };
     },
@@ -675,10 +676,10 @@
       {
         rules: [
           {
-            host: /^[\w]{8}\..*\.(com?|net|gs|me|tv|bz|us)/,
+            host: /^[\w]{8}\.(.*\.(com?|net|gs|me|tv|bz|us))/,
           },
         ],
-        run: function () {
+        run: function (m) {
           NoPicAds.removeAllTimer();
 
           if (unsafeWindow.document.body.onbeforeunload) {
@@ -687,7 +688,7 @@
 
           var i = $_('#c_linkverify_captcha_CaptchaImage');
           if (i) {
-            NoPicAds.captcha(i.src, function (c) {
+            NoPicAds.captcha(i.src, m.host[1], function (c) {
               var a = $('#txtCode');
               var b = $('#submit');
               a.value = c;
@@ -2121,7 +2122,7 @@
         run: function () {
           var i = $_('img');
           if (i) {
-            NoPicAds.captcha(i.src, function (a) {
+            NoPicAds.captcha(i.src, 'urlz.so', function (a) {
               var b = $('input[name=captcha]');
               var c = $('input[name=submit]');
               b.value = a;
