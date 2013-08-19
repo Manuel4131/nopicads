@@ -51,6 +51,7 @@ Matcher.prototype.match = function (url) {
 var matcher = new Matcher('NoPicAds.user.js');
 
 casper.options.onPageInitialized = function () {
+  this.echo('userscript applyed: ' + this.getCurrentUrl());
   if (matcher.match(this.getCurrentUrl())) {
     this.evaluate(function () {
       this.unsafeWindow = window;
@@ -79,10 +80,29 @@ casper.options.onPageInitialized = function () {
   }
 };
 
+casper.options.logLevel = 'debug';
+casper.options.verbose = true;
+
+casper.on('remote.message', function (msg) {
+  console.info(msg);
+});
+
+casper.tryOpen = function (url, then) {
+  return this.then(function () {
+    this.open(url);
+    this.waitFor(function () {
+      return this.status(false).currentHTTPStatus === 200;
+    }, then, function () {
+      this.echo('failed, retrying');
+      this.tryOpen(url);
+    });
+  });
+};
+
 var it = function (label, url, check) {
   casper.test.begin(label, function (test) {
-    casper.start(url, function () {
-      check.call(casper, test);
+    casper.start().tryOpen(url, function (response) {
+      check.call(casper, test, url, response);
     }).run(function () {
       test.done();
     });

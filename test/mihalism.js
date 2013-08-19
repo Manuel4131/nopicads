@@ -6,9 +6,11 @@ it('gallery.jpavgod.com', 'http://gallery.jpavgod.com/viewer.php?file=1031327904
   test.assertEquals(this.getCurrentUrl(), 'http://gallery.jpavgod.com/images/10313279045761679674.jpg');
 });
 
+/*
 it('gzvd.info', 'http://gzvd.info/viewer.php?file=69796079281210754836.jpg', function (test) {
   test.assertEquals(this.getCurrentUrl(), 'http://gzvd.info/images/69796079281210754836.jpg');
 });
+*/
 
 it('hentai-hosting.com', 'http://hentai-hosting.com/viewer.php?file=41319915396861835025.jpg', function (test) {
   test.assertEquals(this.getCurrentUrl(), 'http://hentai-hosting.com/images/41319915396861835025.jpg');
